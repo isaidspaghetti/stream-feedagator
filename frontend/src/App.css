@@ -1,0 +1,78 @@
+.stream-app{
+  background: '#fff';
+  height: 60;
+  border-radius: 4;
+  margin: '10px 0';
+  padding: '0 20px';
+  box-shadow: '0px 0px 4px rgba(0,0,0,0.15)';
+  display: 'flex';
+  align-items: 'center';
+  justify-content: 'space-between';
+  flex-direction: 'row';
+}
+
+.post {
+  padding: 14px;
+  border-bottom: 1px solid #d3d3d3;
+  margin: 10px 0px 10px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+  .actor-logo{
+    height: 25px;
+    width: 25px;
+    border: none;
+    float: left;
+    padding: 0px 5px 0px 5px
+  }
+
+  .thumbnail{
+    float: left;
+    font-size: 0;
+    margin: 0px 5px 0px 0px;
+    overflow: hidden;
+    width: auto;
+    height: auto;
+    padding: 0px 14px 0px 14px;
+  }
+
+   .post-content{
+    display: flex;
+    flex-direction:column;
+   }
+
+  .post-title{
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 1px;
+    outline: none;
+    margin-right: 100px;
+    padding: 0px;
+    overflow: hidden;
+    unicode-bidi: isolate;
+    color: #0000ff;
+    text-decoration:none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+  }
+ 
+  .news-logo{
+    margin-right: 18px;
+  }
+
+  .subreddit{
+    font-size: small;
+  }
+  
+  .abstract{
+    font-size:small;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+
+  .news-details{
+    font-size: small;
+  }
