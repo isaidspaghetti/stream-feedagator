@@ -72,7 +72,7 @@ When the `Log in` button is clicked, the `register` function is executed:
 <!-- https://gist.github.com/isaidspaghetti/aa5893502471ba0e11a6a5f187ed1584 -->
  ```jsx
  //frontend/src.App.js:17
- const register = async (e) => {
+const register = async (e) => {
   try {
     e.preventDefault();
 
@@ -96,9 +96,9 @@ The `backend` will set up a Stream feed client, then respond with a `token` and 
 ```jsx
 //frontend/src/App.js:43
 if (streamCredentials) {
-    return (
-      // Stream Feed Components
-    );
+  return (
+    // Stream Feed Components
+  );
 } else {
   return (
     // Registration Component
@@ -260,7 +260,7 @@ return (
             getScrollParent={() => containerRef}
           />
         )}
-        Activity={Posts}
+        Activity={Post}
       />
     </StreamApp>
   </div>
@@ -290,7 +290,7 @@ The `Paginator` prop handles scrolling functionality. In this app, we utilize St
 ## 🤽🏻‍♂️ Activities
 [`Activities`](https://getstream.io/docs/adding_activities/?language=js) makeup a feed. They can be videos, pictures, articles, or anything else a user might post. `<FlatFeed/>` passes each `activity` to be rendered in the `user`'s feed to the `Activity` prop. The `Activity` prop then determines *how* to render each `activity`. 
 
-As you might have guessed, Stream has a built-in `<Activity />` component as well, but for this app we have a specific format in mind, so we'll create a custom component (`<Posts/>`) instead. Before we dive into the `<Posts/>` component, let's look at how `activities` are generated in Stream.
+As you might have guessed, Stream has a built-in `<Activity />` component as well, but for this app we have a specific format in mind, so we'll create a custom component (`<Post/>`) instead. Before we dive into the `<Post/>` component, let's look at how `activities` are generated in Stream.
 
 ![GIF](./images/step-brothers.gif)
 
@@ -455,16 +455,16 @@ router.post('/bbc', async (req, res) => {
 
 This is essentially the same as the reddit backend. Test your webhook to be sure it's working properly.
 
-Awesome job! Stream will take care of pushing the feed updates to our frontend user, now let's see how we can do a custom rendering using that `<Posts/>` component everyone's been talking about. 
+Awesome job! Stream will take care of pushing the feed updates to our frontend user, now let's see how we can do a custom rendering using that `<Post/>` component everyone's been talking about. 
 
-## Custom `<Posts/>` Component
+## Custom `<Post/>` Component
 
 The following component determines how the `source` feed activities are rendered. The `props` object below is passed in by `<FlatFeed/>`. It contains all the properties of each feed `activity`. 
 
 <!-- https://gist.github.com/isaidspaghetti/979cefa54ef980f5a59e4850fcbfe1f1 -->
 ```html
-//frontend/src/Posts.js:5
-const Posts = ((props) => {
+//frontend/src/Post.js:5
+const Post = ((props) => {
   if (props.activity.actor === 'reddit') {
     return (
       <div className='post'>

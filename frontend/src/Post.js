@@ -2,7 +2,7 @@ import React from 'react';
 const redditLogo = require('./reddit-logo.png');
 const bbcLogo = require('./bbc-logo.png');
 
-const Posts = ((props) => {
+const Post = ((props) => {
   if (props.activity.actor === 'reddit') {
     return (
       <div className='post'>
@@ -29,4 +29,4 @@ const Posts = ((props) => {
   }
 });
 
-export default Posts;
+export default Post;

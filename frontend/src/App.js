@@ -6,7 +6,7 @@ import {
 } from 'react-activity-feed';
 import 'react-activity-feed/dist/index.es.css';
 import axios from 'axios';
-import Posts from './Posts';
+import Post from './Post';
 import './App.css';
 
 function App() {
@@ -59,7 +59,7 @@ function App() {
                 getScrollParent={() => containerRef}
               />
             )}
-            Activity={Posts}
+            Activity={Post}
           />
         </StreamApp>
       </div>
