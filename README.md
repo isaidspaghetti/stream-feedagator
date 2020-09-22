@@ -230,7 +230,7 @@ router.post('/registration', async (req, res) => {
 });
 ```
 
-Consider the use of the `'user'` and `'source'` feed groups above. This app uses the `'source'` feed group for content coming from reddit and BBC News, and the `'user_timeline'` feed group for the user's `flat` feed. The app would still work if the feed groups were the same, but we recommended using different groups in cases like this. 
+Consider the use of the `'user_timeline'` and `'source'` feed groups above. This app uses the `'source'` feed group for content coming from reddit and BBC News, and the `'user_timeline'` feed group for the user's `flat` feed. The app would still work if the feed groups were the same, but we recommended using different groups in cases like this. 
 
 So, our `backend` has provided the `frontend` with a `token` and `streamApiKey` so it can start the app. Next, let's see how the feeds are displayed.
 
