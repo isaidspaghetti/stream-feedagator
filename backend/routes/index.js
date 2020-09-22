@@ -18,11 +18,11 @@ router.post('/registration', async (req, res) => {
 
     const userToken = client.createUserToken(username);
 
-    client.user(username).getOrCreate({
+    await client.user(username).getOrCreate({
       name: username,
     });
 
-    const userFeed = await client.feed('user', username);
+    const userFeed = client.feed('user_timeline', username);
 
     await userFeed.follow('source', 'reddit');
 
@@ -47,7 +47,7 @@ router.post('/initialize', async (req, res) => {
       name: 'reddit'
     });
 
-    const redditFeed = await client.feed('source', 'reddit');
+    redditFeed = await client.feed('source', 'reddit');
 
     const redditUpdate = await axios.get('https://www.reddit.com/r/popular/top.json?count=3');
 
@@ -71,7 +71,7 @@ router.post('/initialize', async (req, res) => {
       name: 'bbc'
     });
 
-    const bbcFeed = await client.feed('source', 'bbc');
+    const bbcFeed = client.feed('source', 'bbc');
 
     const parser = new Parser();
 
@@ -97,7 +97,7 @@ router.post('/initialize', async (req, res) => {
 
 router.post('/reddit-zapier-webhook', async (req, res) => {
   try {
-    const redditFeed = await client.feed('source', 'reddit');
+    const redditFeed = client.feed('source', 'reddit');
 
     const post = await req;
 
@@ -123,7 +123,7 @@ router.post('/reddit-zapier-webhook', async (req, res) => {
 
 router.post('/bbc', async (req, res) => {
   try {
-    const bbcFeed = await client.feed('source', 'bbc');
+    const bbcFeed = client.feed('source', 'bbc');
 
     await bbcFeed.addActivity({
       'actor': 'bbc',

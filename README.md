@@ -123,7 +123,7 @@ Once you're signed up, create a Stream Feed app:
 
     ![](./images/app-name.png)
 
-3. In the App Dashboard, add two new `feed groups` to your app. Name them `source` and `user`, and use the default `flat` group type.
+3. In the App Dashboard, add two new `feed groups` to your app. Name them `source` and `user_timeline`, and use the default `flat` group type.
 
     ![](./images/add-feed-group.png) 
 
@@ -210,7 +210,7 @@ router.post('/registration', async (req, res) => {
       name: username,
     });
 
-    const userFeed = await client.feed('user', username);
+    const userFeed = await client.feed('user_timeline', username);
 
     await userFeed.follow('source', 'reddit');
 
@@ -230,13 +230,13 @@ router.post('/registration', async (req, res) => {
 });
 ```
 
-Consider the use of the `'user'` and `'source'` feed groups above. This app uses the `'source'` feed group for content coming from reddit and BBC News, and the `'user'` feed group for the user's `flat` feed. The app would still work if the feed groups were the same, but we recommended using different groups in cases like this. 
+Consider the use of the `'user'` and `'source'` feed groups above. This app uses the `'source'` feed group for content coming from reddit and BBC News, and the `'user_timeline'` feed group for the user's `flat` feed. The app would still work if the feed groups were the same, but we recommended using different groups in cases like this. 
 
 So, our `backend` has provided the `frontend` with a `token` and `streamApiKey` so it can start the app. Next, let's see how the feeds are displayed.
 
 ## 🔮 Rendering Feeds
 
-Stream has an entire library for React feeds called [`react-activity-feed`](https://getstream.github.io/react-activity-feed/). It includes some slick components with excellent built-in functionality. The next snippet is the heart of the `frontend` and uses a few of these components to render the `user`'s `user` feed.
+Stream has an entire library for React feeds called [`react-activity-feed`](https://getstream.github.io/react-activity-feed/). It includes some slick components with excellent built-in functionality. The next snippet is the heart of the `frontend` and uses a few of these components to render the `user`'s `user_timeline` feed.
 
 <!-- https://gist.github.com/isaidspaghetti/726a9b8382bc182c3d3da56664a9a976 -->
 ```html
@@ -249,7 +249,7 @@ return (
         <button onClick={initializeFeeds}>One-time-Initialize</button>
       </div>
       <FlatFeed
-        feedGroup="user"
+        feedGroup="user_timeline"
         notify
         options={{ limit: 6 }}
         Paginator={(props) => (
@@ -288,7 +288,7 @@ We use the `'limit : 20'` property in the `options` prop to determine how many p
 The `Paginator` prop handles scrolling functionality. In this app, we utilize Stream's `<InfiniteScrollPaginator/>` component, which gives our app a nice, modern scroll UX. 
 
 ## 🤽🏻‍♂️ Activities
-[`Activities`](https://getstream.io/docs/adding_activities/?language=js) makeup a feed. They can be videos, pictures, articles, or anything else a user might post. `<FlatFeed/>` passes each `activity` to be rendered in the `user`'s feed to the `Activity` prop. The `Activity` prop then determines *how* to render each `activity`. 
+[`Activities`](https://getstream.io/docs/adding_activities/?language=js) makeup a feed. They can be videos, pictures, articles, or anything else a user might post. `<FlatFeed/>` passes each `activity` to be rendered in the `user`'s `user_timeline` feed to the `Activity` prop. The `Activity` prop then determines *how* to render each `activity`. 
 
 As you might have guessed, Stream has a built-in `<Activity />` component as well, but for this app we have a specific format in mind, so we'll create a custom component (`<Post/>`) instead. Before we dive into the `<Post/>` component, let's look at how `activities` are generated in Stream.
 

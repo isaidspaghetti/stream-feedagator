@@ -48,7 +48,7 @@ function App() {
             <button onClick={initializeFeeds}>One-time-Initialize</button>
           </div>
           <FlatFeed
-            feedGroup="user"
+            feedGroup="user_timeline"
             notify
             options={{ limit: 6 }}
             Paginator={(props) => (
